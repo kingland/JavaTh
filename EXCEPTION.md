@@ -1,11 +1,13 @@
 ## Exception Handling
 กลไกในการจัดการโฟล์การทำงาน เมื่อเกิดข้อผิดพลาดที่ตอนรันไทม์ (run time)
-### Checked Exception
-คลาสในกลุ่มนี้จะสืบทอดจากคลาส **Throwable** แต่จะยกเว้น คลาส **RuntimeException** และ **Error** ที่ไม่ได้อยู่ในกลุ่ม จะถูกตรวจสอบข้อผิดพลาดตอนคอมไฟล์ (compile time)
-### Unchecked Exception
-คลาสในกลุ่มนี้จะสืบทอดจากคลาส **RuntimeException** ข้อผิดพลาดจะถูกตรวจสอบตอนรันไทม์ (runtime)
-### Error
-คลาสในกลุ่มจะสอบทดสจากคลาส **Error** เมือเกิดข้อผิดพลาดจะส่งผลให้ระบบหรือโปรแกรมต้องหยุดการทำงาน (irrecoverable)
+### กลุ่ม Checked Exception
+* คลาสในกลุ่มนี้จะสืบทอดจากคลาส **Throwable** จะถูกตรวจสอบข้อผิดพลาดตอนคอมไฟล์ (compile time)
+* ยกเว้น คลาส **RuntimeException** และ **Error** ที่ไม่ได้อยู่ในกลุ่ม 
+### กลุ่ม Unchecked Exception
+* คลาสในกลุ่มนี้จะสืบทอดจากคลาส **RuntimeException** ข้อผิดพลาดจะถูกตรวจสอบตอนรันไทม์ (runtime)
+### กลุ่ม Error
+* คลาสในกลุ่มจะสืบทอดจากคลาส **Error** 
+* เมือเกิดข้อผิดพลาดจะส่งผลให้ระบบหรือโปรแกรมต้องหยุดการทำงาน (irrecoverable)
 ## Example Exception
 ### ArithmeticException
 ```java
@@ -134,7 +136,8 @@ public class ThrowsException {
 }
 ```
 ## Exception VS MethodOverride 
-ซุปเปอร์คลาส (superclass) ไม่มีการโยนข้อผิดพลาด (exception) ออกมาจากฟังก์ชัน ฟังก์ชั่นเดียวกันของซับคลาส (subclass) จะต้องไม่กำหนดการโยนข้อผิดพลาด (exception) หรือกำหนดได้แต่ต้องไม่เป็นประเภท checked exception
+* ซุปเปอร์คลาส (superclass) ไม่มีการโยนข้อผิดพลาด (exception) ออกมาจากฟังก์ชัน 
+* ฟังก์ชั่นเดียวกันของซับคลาส (subclass) จะต้องไม่กำหนดการโยนข้อผิดพลาด (exception) หรือกำหนดได้แต่ต้องไม่เป็นประเภท checked exception (ตรวจสอบตอนคอมไพล์)
 ```java
 import java.io.IOException;
 
@@ -174,7 +177,8 @@ class Child extends Parent {
     }
 }
 ```
-ซุปเปอร์คลาส (superclass) ไม่มีการโยนข้อผิดพลาด (exception) ออกมาจากฟังก์ชัน ฟังก์ชั่นเดียวกันของซับคลาส (subclass) ควรจะมีการโยนข้อผิดพลาด (exception) เหมือนกับ ซุปเปอร์คลาส (superclass) หรือ ไม่มีก็ได้
+* ซุปเปอร์คลาส (superclass) ไม่มีการโยนข้อผิดพลาด (exception) ออกมาจากฟังก์ชัน 
+* ฟังก์ชั่นเดียวกันของซับคลาส (subclass) ควรจะมีการโยนข้อผิดพลาด (exception) เหมือนกับ ซุปเปอร์คลาส (superclass) หรือ ไม่มีก็ได้
 ```java
 class Parent {
     void msg() throws ArithmeticException{
@@ -231,7 +235,7 @@ class Child extends Parent {
 }
 ```
 ## Custom Exception 
-สร้าง Exception ที่ใช้งานเฉพาะได้ดังนี้
+สร้าง Exception ที่ใช้งานเฉพาะ
 ```java
 class InvalidAgeException extends Exception {
     InvalidAgeException(String str){
